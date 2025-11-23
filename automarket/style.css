@@ -1,0 +1,422 @@
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+background-color: #0b0c10;
+color: #f5f5f5;
+line-height: 1.5;
+}
+
+/* HEADER */
+
+.header {
+position: sticky;
+top: 0;
+z-index: 10;
+background: rgba(5, 5, 10, 0.95);
+backdrop-filter: blur(8px);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0.8rem 1.5rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.logo {
+font-size: 1.3rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+}
+
+.nav a {
+margin-left: 1rem;
+text-decoration: none;
+color: #f5f5f5;
+font-size: 0.95rem;
+position: relative;
+}
+
+.nav a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -0.2rem;
+width: 0;
+height: 2px;
+background: #f5c14a;
+transition: width 0.2s ease-out;
+}
+
+.nav a:hover::after {
+width: 100%;
+}
+
+/* HERO */
+
+.hero {
+min-height: 55vh;
+background: radial-gradient(circle at top, #252839 0, #050509 55%);
+display: flex;
+align-items: center;
+padding: 2.5rem 1.5rem;
+}
+
+.hero-content {
+max-width: 600px;
+}
+
+.hero h1 {
+font-size: 2.1rem;
+margin-bottom: 1rem;
+}
+
+.hero p {
+font-size: 1rem;
+color: #cfcfcf;
+margin-bottom: 1.5rem;
+}
+
+/* BUTTONS */
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+border: none;
+padding: 0.7rem 1.4rem;
+border-radius: 999px;
+cursor: pointer;
+font-size: 0.95rem;
+text-decoration: none;
+display: inline-block;
+text-align: center;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, #f5c14a, #d89a1a);
+color: #111;
+font-weight: 600;
+}
+
+.btn-primary:hover {
+opacity: 0.9;
+}
+
+.btn-secondary {
+background: #1c1f2b;
+color: #f5f5f5;
+border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.btn-secondary:hover {
+background: #242733;
+}
+
+.btn-ghost {
+background: transparent;
+color: #f5f5f5;
+border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.btn-ghost:hover {
+background: rgba(255, 255, 255, 0.04);
+}
+
+/* CARS SECTION */
+
+main {
+padding: 2rem 1.5rem 3rem;
+}
+
+.cars-section h2,
+.form-section h2 {
+font-size: 1.6rem;
+margin-bottom: 1rem;
+}
+
+.cars-section {
+margin-top: 1rem;
+}
+
+/* FILTERS */
+
+.filters {
+margin: 1rem 0 1.5rem;
+display: flex;
+flex-wrap: wrap;
+gap: 0.8rem;
+align-items: flex-end;
+}
+
+.filter-group {
+display: flex;
+flex-direction: column;
+min-width: 130px;
+}
+
+.filter-group label {
+font-size: 0.8rem;
+margin-bottom: 0.2rem;
+color: #bbbbbb;
+}
+
+select,
+input[type="number"],
+input[type="text"],
+input[type="tel"],
+textarea {
+padding: 0.5rem 0.6rem;
+border-radius: 8px;
+border: 1px solid rgba(255, 255, 255, 0.18);
+background: #10121a;
+color: #f5f5f5;
+font-size: 0.9rem;
+}
+
+/* CARS GRID */
+
+.cars-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+gap: 1.2rem;
+}
+
+.car-card {
+background: #10121a;
+border-radius: 14px;
+overflow: hidden;
+border: 1px solid rgba(255, 255, 255, 0.06);
+display: flex;
+flex-direction: column;
+}
+
+.car-image-wrapper {
+position: relative;
+padding-top: 60%;
+overflow: hidden;
+}
+
+.car-image-wrapper img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease-out;
+}
+
+.car-card:hover .car-image-wrapper img {
+transform: scale(1.05);
+}
+
+.car-body {
+padding: 0.9rem 0.9rem 1rem;
+display: flex;
+flex-direction: column;
+gap: 0.3rem;
+}
+
+.car-title {
+font-weight: 600;
+font-size: 1rem;
+}
+
+.car-meta {
+font-size: 0.85rem;
+color: #bbbbbb;
+}
+
+.car-price {
+font-weight: 700;
+margin-top: 0.3rem;
+}
+
+.car-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 0.7rem;
+font-size: 0.8rem;
+color: #9e9e9e;
+}
+
+/* MODAL */
+
+.modal {
+display: none;
+position: fixed;
+z-index: 50;
+inset: 0;
+background: rgba(0, 0, 0, 0.7);
+justify-content: center;
+align-items: center;
+padding: 1rem;
+}
+
+.modal-content {
+background: #10121a;
+border-radius: 16px;
+max-width: 600px;
+width: 100%;
+max-height: 90vh;
+overflow-y: auto;
+border: 1px solid rgba(255, 255, 255, 0.15);
+padding: 1.2rem;
+}
+
+.modal-close {
+font-size: 1.5rem;
+cursor: pointer;
+float: right;
+}
+
+.modal-body-main-image {
+width: 100%;
+border-radius: 12px;
+margin-bottom: 0.8rem;
+object-fit: cover;
+max-height: 260px;
+}
+
+.modal-title {
+font-size: 1.3rem;
+margin-bottom: 0.4rem;
+}
+
+.modal-subtitle {
+font-size: 0.9rem;
+color: #bbbbbb;
+margin-bottom: 0.5rem;
+}
+
+.modal-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+gap: 0.7rem;
+margin-top: 0.8rem;
+font-size: 0.9rem;
+}
+
+.modal-contact {
+margin-top: 1rem;
+padding-top: 0.7rem;
+border-top: 1px solid rgba(255, 255, 255, 0.16);
+font-size: 0.9rem;
+}
+
+/* FORM SECTION */
+
+.form-section {
+margin-top: 3rem;
+}
+
+.form-info {
+color: #cfcfcf;
+margin-bottom: 1rem;
+font-size: 0.95rem;
+}
+
+.ad-form {
+background: #10121a;
+border-radius: 14px;
+padding: 1.5rem;
+border: 1px solid rgba(255, 255, 255, 0.08);
+display: flex;
+flex-direction: column;
+gap: 0.8rem;
+}
+
+.form-row {
+display: flex;
+gap: 0.8rem;
+flex-wrap: wrap;
+}
+
+.form-group {
+flex: 1;
+min-width: 150px;
+display: flex;
+flex-direction: column;
+gap: 0.25rem;
+}
+
+.form-group label {
+font-size: 0.85rem;
+color: #d0d0d0;
+}
+
+textarea {
+resize: vertical;
+}
+
+.form-note {
+font-size: 0.75rem;
+color: #9e9e9e;
+}
+
+/* FOOTER */
+
+.footer {
+margin-top: 3rem;
+border-top: 1px solid rgba(255, 255, 255, 0.08);
+padding-top: 1.5rem;
+}
+
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 1rem;
+font-size: 0.9rem;
+color: #cfcfcf;
+}
+
+.footer h3,
+.footer h4 {
+margin-bottom: 0.5rem;
+}
+
+.footer a {
+color: #f5c14a;
+text-decoration: none;
+}
+
+.footer a:hover {
+text-decoration: underline;
+}
+
+.footer-bottom {
+margin-top: 1rem;
+font-size: 0.8rem;
+color: #888;
+text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+.hero {
+min-height: 45vh;
+}
+
+.hero h1 {
+font-size: 1.6rem;
+}
+
+.header {
+flex-direction: column;
+align-items: flex-start;
+gap: 0.4rem;
+}
+
+.nav a {
+margin-left: 0.4rem;
+font-size: 0.85rem;
+}
+}
+
