@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<title>Admin – Recenzije | Cvjećarna Flora</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+body { padding: 2rem; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { border: 1px solid #ddd; padding: 0.5rem; font-size: 0.9rem; }
+th { background: #f5f5f5; text-align: left; }
+button.delete-btn { cursor: pointer; padding: 0.3rem 0.6rem; border: none; }
+</style>
+</head>
+<body>
+<h1>Admin – recenzije</h1>
+<p><strong>NAPOMENA:</strong> Ovo nije za javnost. Link ne stavljaj na stranicu, ti ga znaš napamet.</p>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Ime</th>
+<th>Lokacija</th>
+<th>Tekst</th>
+<th>Datum</th>
+<th>Akcije</th>
+</tr>
+</thead>
+<tbody id="admin-reviews-body">
+<tr><td colspan="6">Učitavanje...</td></tr>
+</tbody>
+</table>
+
+<script>
+const tbody = document.getElementById('admin-reviews-body');
+
+async function loadAdminReviews() {
+try {
+const res = await fetch('/api/reviews');
+const reviews = await res.json();
+
+if (!reviews.length) {
+tbody.innerHTML = '<tr><td colspan="6">Nema recenzija.</td></tr>';
+return;
+}
+
+tbody.innerHTML = '';
+reviews.forEach(r => {
+const tr = document.createElement('tr');
+tr.innerHTML = `
+<td>${r.id}</td>
+<td>${r.name}</td>
+<td>${r.location || ''}</td>
+<td>${r.text}</td>
+<td>${new Date(r.createdAt).toLocaleString('hr-HR')}</td>
+<td><button class="delete-btn" data-id="${r.id}">Obriši</button></td>
+`;
+tbody.appendChild(tr);
+});
+} catch (err) {
+console.error(err);
+tbody.innerHTML = '<tr><td colspan="6">Greška pri učitavanju.</td></tr>';
+}
+}
+
+async function deleteReview(id) {
+if (!confirm('Stvarno obrisati ovu recenziju?')) return;
+
+try {
+const res = await fetch('/api/reviews/' + id, {
+method: 'DELETE'
+});
+
+if (!res.ok) {
+throw new Error('Greška pri brisanju');
+}
+
+await loadAdminReviews();
+} catch (err) {
+console.error(err);
+alert('Brisanje nije uspjelo.');
+}
+}
+
+tbody.addEventListener('click', (e) => {
+if (e.target.matches('.delete-btn')) {
+const id = e.target.getAttribute('data-id');
+deleteReview(id);
+}
+});
+
+loadAdminReviews();
+</script>
+</body>
+</html>
+
