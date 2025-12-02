@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoMarket</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+<div class="logo">AutoMarket</div>
+<nav class="nav">
+<a href="#lista-auta">Auta</a>
+<a href="#predaj-oglas">Predaj oglas</a>
+<a href="#kontakt">Kontakt</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>Kupnja i prodaja vozila na jednom mjestu</h1>
+<p>Pregledaj aktualnu ponudu ili pošalji podatke za svoj oglas. Ti prodaješ, mi prikazujemo.</p>
+<a href="#lista-auta" class="btn-primary">Pogledaj ponudu</a>
+</div>
+</section>
+
+<!-- FILTERI + LISTA AUTA -->
+<main>
+<section id="lista-auta" class="cars-section">
+<h2>Aktualna ponuda vozila</h2>
+
+<div class="filters">
+<div class="filter-group">
+<label for="filter-brand">Marka</label>
+<select id="filter-brand">
+<option value="">Sve marke</option>
+<!-- JS će ubaciti ostale marke -->
+</select>
+</div>
+<div class="filter-group">
+<label for="filter-min-price">Minimalna cijena (EUR)</label>
+<input type="number" id="filter-min-price" placeholder="npr. 3000">
+</div>
+<div class="filter-group">
+<label for="filter-max-price">Maksimalna cijena (EUR)</label>
+<input type="number" id="filter-max-price" placeholder="npr. 15000">
+</div>
+<button id="filter-btn" class="btn-secondary">Filtriraj</button>
+<button id="reset-btn" class="btn-ghost">Resetiraj</button>
+</div>
+
+<div id="cars-container" class="cars-grid">
+<!-- JS ubacuje kartice -->
+</div>
+</section>
+
+<!-- MODAL DETALJI AUTA -->
+<div id="car-modal" class="modal">
+<div class="modal-content">
+<span id="modal-close" class="modal-close">&times;</span>
+<div id="modal-body">
+<!-- JS puni detalje -->
+</div>
+</div>
+</div>
+
+<!-- PREDAJ OGLAS -->
+<section id="predaj-oglas" class="form-section">
+<h2>Predaj oglas za svoje vozilo</h2>
+<p class="form-info">
+Ispuni osnovne podatke o vozilu, a mi ćemo te kontaktirati za potvrdu i slike.
+</p>
+<form class="ad-form" onsubmit="handleAdFormSubmit(event)">
+<div class="form-row">
+<div class="form-group">
+<label for="ime">Ime i prezime</label>
+<input type="text" id="ime" required>
+</div>
+<div class="form-group">
+<label for="telefon">Telefon</label>
+<input type="tel" id="telefon" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="marka">Marka</label>
+<input type="text" id="marka" required>
+</div>
+<div class="form-group">
+<label for="model">Model</label>
+<input type="text" id="model" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="godina">Godina</label>
+<input type="number" id="godina" required>
+</div>
+<div class="form-group">
+<label for="kilometri">Kilometri</label>
+<input type="number" id="kilometri" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="cijena">Cijena (EUR)</label>
+<input type="number" id="cijena" required>
+</div>
+<div class="form-group">
+<label for="lokacija">Lokacija</label>
+<input type="text" id="lokacija" placeholder="npr. Fojnica, Aalen" required>
+</div>
+</div>
+
+<div class="form-group">
+<label for="opis">Opis vozila</label>
+<textarea id="opis" rows="4" placeholder="Stanje, servisna povijest, oprema..."></textarea>
+</div>
+
+<p class="form-note">
+* Trenutno se podaci šalju samo tebi (prikaz poruke u pregledniku).
+Nakon validacije oglasa ručno ćeš ga dodati u listu vozila.
+</p>
+
+<button type="submit" class="btn-primary">Pošalji podatke</button>
+</form>
+</section>
+
+<!-- KONTAKT / FOOTER -->
+<footer id="kontakt" class="footer">
+<div class="footer-content">
+<div>
+<h3>AutoMarket</h3>
+<p>Neovisna online platforma za oglašavanje vozila.</p>
+</div>
+<div>
+<h4>Kontakt</h4>
+<p>Telefon: <a href="tel:+38760000000">+387 60 000 000</a></p>
+<p>Instagram: <a href="#" target="_blank">uskoro</a></p>
+<p>Facebook: <a href="#" target="_blank">uskoro</a></p>
+</div>
+<div>
+<h4>Lokacija</h4>
+<p>Fojnica / Aalen i okolica</p>
+</div>
+</div>
+<p class="footer-bottom">&copy; <span id="year-span"></span> AutoMarket. Sva prava pridržana.</p>
+</footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
+
